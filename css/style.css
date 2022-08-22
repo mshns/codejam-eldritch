@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 auto;
+  width: 100vw;
+  min-height: 100vh;
+  background-image: url('../assets/home.jpg');
+  background-size: cover;
+  background-position: center;
+  font-family: 'Neucha', cursive;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.ancients-container {
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-self: center;
+}
+
+.card {
+  width: 200px;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.levels-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title,
+.stage-text {
+  color: white;
+  font-size: 24px;
+  font-weight: 100;
+  text-transform: uppercase;
+}
+
+.button {
+  font-family: 'Neucha', cursive;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 10px;
+  cursor: pointer;
+  transition: .4s;
+}
+
+.button-shuffle {
+  font-size: 32px;
+  font-weight: bolder;
+  margin-top: 40px;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+.deck-container {
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+
+.stage-container {
+  text-align: center;
+}
+
+.current-state {
+  width: 100%;
+}
+
+.dots-container {
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px 15px;
+  border-radius: 10px;
+}
+
+.green {
+  background-color: #336600;
+}
+
+.brown {
+  background-color: #996600;
+}
+
+.blue {
+  background-color: #333399;
+}
+
+.card-back {
+  width: 120px;
+  margin: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.card-back:hover {
+  transform: scale(1.05);
+}

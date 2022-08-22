@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Eldritch Horror</title>
+</head>
+<body>
+  <main class="main">
+    <div class="ancients-container">
+      <img class="card" src="/assets/Ancients/Azathoth.jpg" alt="Azathoth">
+      <img class="card" src="/assets/Ancients/Cthulthu.jpg" alt="Cthulthu">
+      <img class="card" src="/assets/Ancients/IogSothoth.jpg" alt="Iog-Sothoth">
+      <img class="card" src="/assets/Ancients/ShubNiggurath.jpg" alt="Shub-Niggurath">
+    </div>
+    <div class="levels-container">
+      <h1 class="title">Уровень сложности</h1>
+      <button class="button button-very-easy">Очень лёгкий</button>
+      <button class="button button-easy">Лёгкий</button>
+      <button class="button button-middle">Средний</button>
+      <button class="button button-difficult">Высокий</button>
+      <button class="button button-very-difficult">Очень высокий</button>
+      <button class="button button-shuffle">Замешать колоду</button>
+    </div>
+    <div class="deck-container">
+      <div class="current-state">
+        <div class="stage-container">
+          <span class="stage-text">Первая стадия</span>
+          <div class="dots-container">
+            <div class="dot green"></div>
+            <div class="dot brown"></div>
+            <div class="dot blue"></div>
+          </div>
+        </div>
+        <div class="stage-container">
+          <span class="stage-text">Вторая стадия</span>
+          <div class="dots-container">
+            <div class="dot green"></div>
+            <div class="dot brown"></div>
+            <div class="dot blue"></div>
+          </div>
+        </div>
+        <div class="stage-container">
+          <span class="stage-text">Третья стадия</span>
+          <div class="dots-container">
+            <div class="dot green"></div>
+            <div class="dot brown"></div>
+            <div class="dot blue"></div>
+          </div>
+        </div>
+      </div>
+      <div class="deck">
+        <img class="card-back" src="/assets/mythicCardBackground.jpg" alt="Azathoth">
+      </div>
+      <div class="last-card">
+        <img class="card" src="/assets/mythicCardBackground.jpg" alt="Azathoth">
+      </div>
+    </div>
+  </main>
+  <script type="module" href="js/script.js"></script>  
+</body>
+</html>
