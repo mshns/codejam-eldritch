@@ -4,6 +4,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -24,7 +25,7 @@ body {
 }
 
 .ancients-container {
-  width: 30%;
+  width: 35%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -33,11 +34,21 @@ body {
 
 .card {
   width: 200px;
+  height: 300px;
   margin: 10px;
   border-radius: 10px;
   cursor: pointer;
   transition: .2s;
+  box-shadow: 4px 4px 4px 4px rgb(0, 0, 0, .4);
+  filter: sepia(100%);
 }
+
+.card.active {
+  outline: 5px solid #00af64;
+  transform: scale(1.05);
+  filter: sepia(0);
+}
+
 
 .card:hover {
   transform: scale(1.05);
@@ -63,15 +74,23 @@ body {
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
-  margin: 10px;
+  border-radius: 10px;
+  margin: 5px;
+  box-shadow: 4px 4px 4px 4px rgb(0, 0, 0, .4);
   cursor: pointer;
   transition: .4s;
+}
+
+.button.active {
+  background-color: #00af64;
+  transform: scale(1.05);
 }
 
 .button-shuffle {
   font-size: 32px;
   font-weight: bolder;
-  margin-top: 40px;
+  margin-top: 20px;
+  background-color: #cc3333;
 }
 
 .button:hover {
@@ -79,7 +98,7 @@ body {
 }
 
 .deck-container {
-  width: 30%;
+  width: 35%;
   display: flex;
   flex-wrap: wrap;
 
@@ -104,6 +123,9 @@ body {
   height: 40px;
   margin: 0 10px 15px;
   border-radius: 10px;
+  color: white;
+  font-size: 32px;
+  font-weight: bolder;
 }
 
 .green {
@@ -120,6 +142,7 @@ body {
 
 .card-back {
   width: 120px;
+  height: auto;
   margin: 10px;
   border-radius: 10px;
   cursor: pointer;
