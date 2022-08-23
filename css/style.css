@@ -14,6 +14,7 @@ body {
   background-image: url('../assets/home.jpg');
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   font-family: 'Neucha', cursive;
 }
 
@@ -34,7 +35,7 @@ body {
 
 .card {
   width: 200px;
-  height: 300px;
+  height: auto;
   margin: 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -49,9 +50,9 @@ body {
   filter: sepia(0);
 }
 
-
 .card:hover {
   transform: scale(1.05);
+  filter: sepia(0);
 }
 
 .levels-container {
@@ -63,10 +64,13 @@ body {
 
 .title,
 .stage-text {
+  width: 100%;
   color: white;
   font-size: 24px;
   font-weight: 100;
   text-transform: uppercase;
+  text-align: center;
+  opacity: .5;
 }
 
 .button {
@@ -141,14 +145,27 @@ body {
 }
 
 .card-back {
-  width: 120px;
-  height: auto;
+  width: 200px;
+  height: 294px;
   margin: 10px;
   border-radius: 10px;
   cursor: pointer;
+  box-shadow: 4px 4px 4px 4px rgb(0, 0, 0, .4);
   transition: .2s;
 }
 
 .card-back:hover {
   transform: scale(1.05);
+}
+
+.last-card {
+  width: 200px;
+  height: 294px;
+  margin: 10px;
+  border-radius: 10px;
+  transition: .2s;
+  box-shadow: 4px 4px 4px 4px rgb(0, 0, 0, .4);
+  background-position: center;
+  background-size: 101%;
+  background-repeat: no-repeat;
 }
