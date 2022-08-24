@@ -155,7 +155,7 @@ body {
 }
 
 .card-back:hover {
-  transform: scale(1.05);
+  transform: scale(0.98);
 }
 
 .last-card {
