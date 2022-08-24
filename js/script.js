@@ -105,7 +105,7 @@ btnMiddle.addEventListener('click', function() {
   btnEasy.classList.remove('active');
   btnDifficult.classList.remove('active');
   btnVeryDifficult.classList.remove('active');
-  diffLevel = 'very-easy';
+  diffLevel = 'middle';
 })
 btnDifficult.addEventListener('click', function() {
   btnDifficult.classList.add('active');
@@ -113,6 +113,7 @@ btnDifficult.addEventListener('click', function() {
   btnEasy.classList.remove('active');
   btnMiddle.classList.remove('active');
   btnVeryDifficult.classList.remove('active');
+  diffLevel = 'difficult';
 })
 btnVeryDifficult.addEventListener('click', function() {
   btnVeryDifficult.classList.add('active');
@@ -120,61 +121,117 @@ btnVeryDifficult.addEventListener('click', function() {
   btnEasy.classList.remove('active');
   btnMiddle.classList.remove('active');
   btnDifficult.classList.remove('active');
+  diffLevel = 'very-difficult';
 })
 
 // замешивание колоды
 
 const btnShuffle = document.querySelector('.button-shuffle');
-
-
-
 btnShuffle.addEventListener('click', shuffle);
-
 
 let arrCards = [];
 
 function shuffle() {
+  let arrBlue = []; // массив синих карт, отобранных по уровню сложности
+  let arrBrown = []; // массив коричневых карт, отобранных по уровню сложности
+  let arrGreen = []; // массив зелёных карт, отобранных по уровню сложности
+  let arrBrownNormal = []; // массив коричневых карт средней сложности для добавления к очень простым или очень сложным
+  let arrGreenNormal = []; // массив зелёных карт средней сложности для добавления к очень простым или очень сложным
 
+  let arrFirstStage = []; // массив карт для первой стадии
+  let arrSecondStage = []; // массив карт для второй стадии
+  let arrThirdStage = []; // массив карт для третьей стадии
 
-  let arrBlue = [];
-  let arrBrown = [];
-  let arrGreen = [];
+  if (diffLevel === 'middle') {
+    cardsData.forEach(element => {
+      if (element.color === 'blue') {
+        arrBlue.push(element.src);
+      } else if (element.color === 'brown') {
+        arrBrown.push(element.src);
+      } else {
+        arrGreen.push(element.src);
+      }
+    });
+  } else if (diffLevel === 'easy') {
+    cardsData.forEach(element => {
+      if (element.color === 'blue' && element.difficulty != 'hard') {
+        arrBlue.push(element.src);
+      } else if (element.color === 'brown' && element.difficulty != 'hard') {
+        arrBrown.push(element.src);
+      } else if (element.color === 'green' && element.difficulty != 'hard') {
+        arrGreen.push(element.src );
+      }
+    });
+  } else if (diffLevel === 'difficult') {
+    cardsData.forEach(element => {
+      if (element.color === 'blue' && element.difficulty != 'easy') {
+        arrBlue.push(element.src);
+      } else if (element.color === 'brown' && element.difficulty != 'easy') {
+        arrBrown.push(element.src);
+      } else if (element.color === 'green' && element.difficulty != 'easy') {
+        arrGreen.push(element.src );
+      }
+    });
+  } else if (diffLevel === 'very-easy') {
+    
+    cardsData.forEach(element => {
+      if (element.color === 'blue' && element.difficulty === 'easy') {
+        arrBlue.push(element.src);
+      } else if (element.color === 'brown' && element.difficulty === 'easy') {
+        arrBrown.push(element.src);
+      } else if (element.color === 'brown' && element.difficulty === 'normal') {
+        arrBrownNormal.push(element.src);
+      } else if (element.color === 'green' && element.difficulty === 'easy') {
+        arrGreen.push(element.src);
+      } else if (element.color === 'green' && element.difficulty === 'normal') {
+        arrGreenNormal.push(element.src);
+      }
+    });
 
-  let arrFirstStage = [];
-  let arrSecondStage = [];
-  let arrThirdStage = [];
+    if (arrBrown.length < (dot2Num + dot5Num + dot8Num)) {
+      arrBrown = arrBrown.concat(arrBrownNormal.sort(cardsShuffle).slice(0, dot2Num + dot5Num + dot8Num - arrBrown.length));
+    }
+    if (arrGreen.length < (dot1Num + dot4Num + dot7Num)) {
+      arrGreen = arrGreen.concat(arrGreenNormal.sort(cardsShuffle).slice(0, dot1Num + dot4Num + dot7Num - arrGreen.length));
+    }
 
-cardsData.forEach(element => {
-  if (element.color === 'blue') {
-    arrBlue.push(element.src);
-  } else if (element.color === 'brown') {
-    arrBrown.push(element.src);
-  } else {
-    arrGreen.push(element.src);
+  } else if (diffLevel === 'very-difficult') {
+    cardsData.forEach(element => {
+      if (element.color === 'blue' && element.difficulty === 'hard') {
+        arrBlue.push(element.src);
+      } else if (element.color === 'brown' && element.difficulty === 'hard') {
+        arrBrown.push(element.src);
+      } else if (element.color === 'brown' && element.difficulty === 'normal') {
+        arrBrownNormal.push(element.src);
+      } else if (element.color === 'green' && element.difficulty === 'hard') {
+        arrGreen.push(element.src);
+      } else if (element.color === 'green' && element.difficulty === 'normal') {
+        arrGreenNormal.push(element.src);
+      }
+    });
+
+    if (arrBrown.length < (dot2Num + dot5Num + dot8Num)) {
+      arrBrown = arrBrown.concat(arrBrownNormal.sort(cardsShuffle).slice(0, dot2Num + dot5Num + dot8Num - arrBrown.length));
+    }
+    if (arrGreen.length < (dot1Num + dot4Num + dot7Num)) {
+      arrGreen = arrGreen.concat(arrGreenNormal.sort(cardsShuffle).slice(0, dot1Num + dot4Num + dot7Num - arrGreen.length));
+    }
   }
-})
+  
+  function cardsShuffle(a, b) {
+    return 0.5 - Math.random();
+  };
+  
+  arrBlue.sort(cardsShuffle);
+  arrBrown.sort(cardsShuffle);
+  arrGreen.sort(cardsShuffle);
 
-
-function cardsShuffle(a, b) {
-  return 0.5 - Math.random();
-}
-
-arrBlue.sort(cardsShuffle);
-arrBrown.sort(cardsShuffle);
-arrGreen.sort(cardsShuffle);
-
-arrThirdStage = arrBlue.slice(0, dot9Num).concat(arrBrown.slice(0, dot8Num)).concat(arrGreen.slice(0, dot7Num));
-console.log(arrThirdStage);
-arrSecondStage = arrBlue.slice(dot9Num, dot9Num + dot6Num).concat(arrBrown.slice(dot8Num, parseInt(dot8Num) + parseInt(dot5Num))).concat(arrGreen.slice(dot7Num, dot7Num + dot4Num));
-console.log(arrSecondStage);
-arrFirstStage = arrBlue.slice(dot9Num + dot6Num, dot9Num + dot6Num + dot3Num).concat(arrBrown.slice(dot8Num + dot5Num, dot8Num + dot5Num + dot2Num)).concat(arrGreen.slice(dot7Num + dot4Num, dot7Num + dot4Num + dot1Num));
-console.log(arrFirstStage);
-
-
-arrCards = arrThirdStage.sort(cardsShuffle).concat(arrSecondStage.sort(cardsShuffle)).concat(arrFirstStage.sort(cardsShuffle));
-console.log(arrCards);
-}
-
+  arrThirdStage = arrBlue.slice(0, dot9Num).concat(arrBrown.slice(0, dot8Num)).concat(arrGreen.slice(0, dot7Num));
+  arrSecondStage = arrBlue.slice(dot9Num, dot9Num + dot6Num).concat(arrBrown.slice(dot8Num, dot8Num + dot5Num)).concat(arrGreen.slice(dot7Num, dot7Num + dot4Num));
+  arrFirstStage = arrBlue.slice(dot9Num + dot6Num, dot9Num + dot6Num + dot3Num).concat(arrBrown.slice(dot8Num + dot5Num, dot8Num + dot5Num + dot2Num)).concat(arrGreen.slice(dot7Num + dot4Num, dot7Num + dot4Num + dot1Num));
+  
+  arrCards = arrThirdStage.sort(cardsShuffle).concat(arrSecondStage.sort(cardsShuffle)).concat(arrFirstStage.sort(cardsShuffle));
+};
 
 // показ карт и обновление трекера
 
@@ -226,5 +283,4 @@ btnShowCard.addEventListener('click', function() {
     lastCard.style.backgroundImage = '';
     alert('Выберите Древнего, уровень сложности и замешайте колоду, пожалуйста.');
   }
-})
-
+});
