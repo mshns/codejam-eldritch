@@ -22,7 +22,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 .ancients-container {
@@ -70,7 +70,11 @@ body {
   font-weight: 100;
   text-transform: uppercase;
   text-align: center;
+}
+
+.title {
   opacity: .5;
+
 }
 
 .button {
@@ -95,6 +99,7 @@ body {
   font-weight: bolder;
   margin-top: 20px;
   background-color: #cc3333;
+  margin: 0;
 }
 
 .button:hover {
@@ -105,7 +110,6 @@ body {
   width: 35%;
   display: flex;
   flex-wrap: wrap;
-
   justify-content: center;
 }
 
@@ -145,6 +149,7 @@ body {
 }
 
 .card-back {
+  position: relative;
   width: 200px;
   height: 294px;
   margin: 10px;
@@ -152,10 +157,30 @@ body {
   cursor: pointer;
   box-shadow: 4px 4px 4px 4px rgb(0, 0, 0, .4);
   transition: .2s;
+  background-image: url('/assets/mythicCardBackground.jpg');
+
+}
+
+.title-card-back {
+  position: absolute;
+  top: 60%;
+  transform: scale(0);
+  transition: .5s;
+  z-index: -100;
+  -webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.title-card-back.visible {
+  transform: scale(1);
+  z-index: 100;
 }
 
 .card-back:hover {
-  transform: scale(0.98);
+  filter:brightness(1.1);
 }
 
 .last-card {
