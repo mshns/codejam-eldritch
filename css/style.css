@@ -157,8 +157,7 @@ body {
   cursor: pointer;
   box-shadow: 4px 4px 4px 4px rgb(0, 0, 0, .4);
   transition: .2s;
-  background-image: url('/assets/mythicCardBackground.jpg');
-
+  background-image: url('../assets/mythicCardBackground.jpg');
 }
 
 .title-card-back {

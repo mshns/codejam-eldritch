@@ -293,9 +293,15 @@ const btnShowCard = document.querySelector(".card-back");
 const btnShowCardTitle = document.querySelector(".title-card-back");
 
 btnShowCard.addEventListener("click", function () {
+  if (ancient != undefined || diffLevel != undefined) {
+    resetSettings();
+    alert(
+      "1. Выберите Древнего.\n2. Выберите уровень сложности.\n3. Замешайте колоду.\n4. Жмите на фиолетовую карту."
+    );
+  }
   if (arrCards.length > 0) {
     lastCard.style.backgroundImage = arrCards[arrCards.length - 1];
-    if (arrCards[arrCards.length - 1].substring(24, 26) === "gr") {
+    if (arrCards[arrCards.length - 1].substring(26, 28) === "gr") {
       if (dot1.textContent != 0) {
         dot1.textContent--;
       } else if (dot4.textContent != 0) {
@@ -303,7 +309,7 @@ btnShowCard.addEventListener("click", function () {
       } else if (dot7.textContent != 0) {
         dot7.textContent--;
       }
-    } else if (arrCards[arrCards.length - 1].substring(24, 26) === "br") {
+    } else if (arrCards[arrCards.length - 1].substring(26, 28) === "br") {
       if (dot2.textContent != 0) {
         dot2.textContent--;
       } else if (dot5.textContent != 0) {
@@ -346,10 +352,8 @@ function resetSettings() {
   ancient = undefined;
   diffLevel = undefined;
   btnShowCardTitle.classList.remove('visible');
-
-
+  
   lastCard.style.backgroundImage = "";
-
 }
 
 // score
