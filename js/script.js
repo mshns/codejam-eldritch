@@ -51,12 +51,22 @@ function setDots(ancientNum) {
   ancient = undefined;
 }
 
+import sounds from "./sounds.js";
+
+const audio = new Audio();
+function playAudio(sound) {
+    audio.src = sounds[sound].src;
+    audio.volume = .5;
+    audio.play();
+}
+
 Azathoth.addEventListener("click", function () {
   Azathoth.classList.add("active");
   Cthulthu.classList.remove("active");
   IogSothoth.classList.remove("active");
   ShubNiggurath.classList.remove("active");
   setDots(0);
+  playAudio(0);
   ancient = "azathoth";
 });
 Cthulthu.addEventListener("click", function () {
@@ -64,6 +74,7 @@ Cthulthu.addEventListener("click", function () {
   Azathoth.classList.remove("active");
   IogSothoth.classList.remove("active");
   ShubNiggurath.classList.remove("active");
+  playAudio(0);
   setDots(1);
   ancient = "cthulhu";
 });
@@ -72,6 +83,7 @@ IogSothoth.addEventListener("click", function () {
   Azathoth.classList.remove("active");
   Cthulthu.classList.remove("active");
   ShubNiggurath.classList.remove("active");
+  playAudio(0);
   setDots(2);
   ancient = "iogSothoth";
 });
@@ -80,6 +92,7 @@ ShubNiggurath.addEventListener("click", function () {
   Azathoth.classList.remove("active");
   Cthulthu.classList.remove("active");
   IogSothoth.classList.remove("active");
+  playAudio(0);
   setDots(3);
   ancient = "shubNiggurath";
 });
@@ -93,6 +106,7 @@ const btnDifficult = document.querySelector(".button-difficult");
 const btnVeryDifficult = document.querySelector(".button-very-difficult");
 
 btnVeryEasy.addEventListener("click", function () {
+  playAudio(2);
   btnVeryEasy.classList.add("active");
   btnEasy.classList.remove("active");
   btnMiddle.classList.remove("active");
@@ -101,6 +115,7 @@ btnVeryEasy.addEventListener("click", function () {
   diffLevel = "very-easy";
 });
 btnEasy.addEventListener("click", function () {
+  playAudio(2);
   btnEasy.classList.add("active");
   btnVeryEasy.classList.remove("active");
   btnMiddle.classList.remove("active");
@@ -109,6 +124,7 @@ btnEasy.addEventListener("click", function () {
   diffLevel = "easy";
 });
 btnMiddle.addEventListener("click", function () {
+  playAudio(2);
   btnMiddle.classList.add("active");
   btnVeryEasy.classList.remove("active");
   btnEasy.classList.remove("active");
@@ -117,6 +133,7 @@ btnMiddle.addEventListener("click", function () {
   diffLevel = "middle";
 });
 btnDifficult.addEventListener("click", function () {
+  playAudio(2);
   btnDifficult.classList.add("active");
   btnVeryEasy.classList.remove("active");
   btnEasy.classList.remove("active");
@@ -125,6 +142,7 @@ btnDifficult.addEventListener("click", function () {
   diffLevel = "difficult";
 });
 btnVeryDifficult.addEventListener("click", function () {
+  playAudio(2);
   btnVeryDifficult.classList.add("active");
   btnVeryEasy.classList.remove("active");
   btnEasy.classList.remove("active");
@@ -155,6 +173,8 @@ function shuffle() {
   let arrThirdStage = []; // массив карт для третьей стадии
 
   btnShowCardTitle.textContent = 'Жмите на карту'; 
+
+  playAudio(1);
 
   if (ancient === undefined || diffLevel === undefined) {
     alert(
@@ -294,6 +314,7 @@ const btnShowCard = document.querySelector(".card-back");
 const btnShowCardTitle = document.querySelector(".title-card-back");
 
 btnShowCard.addEventListener("click", function () {
+  playAudio(2);
   if (ancient != undefined || diffLevel != undefined) {
     resetSettings();
     alert(
@@ -301,7 +322,14 @@ btnShowCard.addEventListener("click", function () {
     );
   }
   if (arrCards.length > 0) {
-    lastCard.style.backgroundImage = arrCards[arrCards.length - 1].src;
+
+    const img = new Image();
+    img.src = arrCards[arrCards.length - 1].src;
+
+    img.onload = () => {
+      lastCard.style.backgroundImage = `url(${img.src})`;
+    };
+    
 
     if (arrCards[arrCards.length - 1].color === "green") {
       if (dot1.textContent != 0) {
