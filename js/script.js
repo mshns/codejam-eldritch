@@ -49,15 +49,20 @@ function setDots(ancientNum) {
   dot9Num = ancientsData[ancientNum].thirdStage.blueCards;
   dot9.textContent = dot9Num;
   ancient = undefined;
+  btnVeryEasy.classList.remove("active");
+  btnEasy.classList.remove("active");
+  btnMiddle.classList.remove("active");
+  btnDifficult.classList.remove("active");
+  btnVeryDifficult.classList.remove("active");
+  lastCard.style.backgroundImage = "";
 }
 
 import sounds from "./sounds.js";
 
 const audio = new Audio();
 function playAudio(sound) {
-    audio.src = sounds[sound].src;
-    audio.volume = .5;
-    audio.play();
+  audio.src = sounds[sound].src;
+  audio.play();
 }
 
 Azathoth.addEventListener("click", function () {
@@ -113,6 +118,7 @@ btnVeryEasy.addEventListener("click", function () {
   btnDifficult.classList.remove("active");
   btnVeryDifficult.classList.remove("active");
   diffLevel = "very-easy";
+  lastCard.style.backgroundImage = "";
 });
 btnEasy.addEventListener("click", function () {
   playAudio(2);
@@ -122,6 +128,7 @@ btnEasy.addEventListener("click", function () {
   btnDifficult.classList.remove("active");
   btnVeryDifficult.classList.remove("active");
   diffLevel = "easy";
+  lastCard.style.backgroundImage = "";
 });
 btnMiddle.addEventListener("click", function () {
   playAudio(2);
@@ -131,6 +138,7 @@ btnMiddle.addEventListener("click", function () {
   btnDifficult.classList.remove("active");
   btnVeryDifficult.classList.remove("active");
   diffLevel = "middle";
+  lastCard.style.backgroundImage = "";
 });
 btnDifficult.addEventListener("click", function () {
   playAudio(2);
@@ -140,6 +148,7 @@ btnDifficult.addEventListener("click", function () {
   btnMiddle.classList.remove("active");
   btnVeryDifficult.classList.remove("active");
   diffLevel = "difficult";
+  lastCard.style.backgroundImage = "";
 });
 btnVeryDifficult.addEventListener("click", function () {
   playAudio(2);
@@ -149,6 +158,7 @@ btnVeryDifficult.addEventListener("click", function () {
   btnMiddle.classList.remove("active");
   btnDifficult.classList.remove("active");
   diffLevel = "very-difficult";
+  lastCard.style.backgroundImage = "";
 });
 
 // замешивание колоды
@@ -159,8 +169,8 @@ btnShuffle.addEventListener("click", shuffle);
 let arrCards = [];
 
 function shuffle() {
-  console.log('😱 ancient: ' + ancient);
-  console.log('⚙️ difficulty: ' + diffLevel);
+  console.log("😱 ancient: " + ancient);
+  console.log("⚙️ difficulty: " + diffLevel);
 
   let arrBlue = []; // массив синих карт, отобранных по уровню сложности
   let arrBrown = []; // массив коричневых карт, отобранных по уровню сложности
@@ -172,7 +182,7 @@ function shuffle() {
   let arrSecondStage = []; // массив карт для второй стадии
   let arrThirdStage = []; // массив карт для третьей стадии
 
-  btnShowCardTitle.textContent = 'Жмите на карту'; 
+  btnShowCardTitle.textContent = "Жмите на карту";
 
   playAudio(1);
 
@@ -302,7 +312,7 @@ function shuffle() {
 
   ancient = undefined;
   diffLevel = undefined;
-  btnShowCardTitle.classList.add('visible');
+  btnShowCardTitle.classList.add("visible");
 }
 
 // показ карт и обновление трекера
@@ -322,14 +332,11 @@ btnShowCard.addEventListener("click", function () {
     );
   }
   if (arrCards.length > 0) {
-
     const img = new Image();
     img.src = arrCards[arrCards.length - 1].src;
-
     img.onload = () => {
       lastCard.style.backgroundImage = `url(${img.src})`;
     };
-    
 
     if (arrCards[arrCards.length - 1].color === "green") {
       if (dot1.textContent != 0) {
@@ -356,10 +363,15 @@ btnShowCard.addEventListener("click", function () {
         dot9.textContent--;
       }
     }
-    console.log('🎴 ' + arrCards[arrCards.length - 1].id + ': ' + arrCards[arrCards.length - 1].difficulty);
+    console.log(
+      "🎴 " +
+        arrCards[arrCards.length - 1].id +
+        ": " +
+        arrCards[arrCards.length - 1].difficulty
+    );
     arrCards.pop();
     if (arrCards.length === 0) {
-      btnShowCardTitle.textContent = 'Начать заново'; 
+      btnShowCardTitle.textContent = "Начать заново";
     }
   } else {
     resetSettings();
@@ -382,8 +394,8 @@ function resetSettings() {
 
   ancient = undefined;
   diffLevel = undefined;
-  btnShowCardTitle.classList.remove('visible');
-  
+  btnShowCardTitle.classList.remove("visible");
+
   lastCard.style.backgroundImage = "";
 }
 
