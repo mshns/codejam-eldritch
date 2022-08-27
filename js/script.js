@@ -49,6 +49,20 @@ function setDots(ancientNum) {
   dot9Num = ancientsData[ancientNum].thirdStage.blueCards;
   dot9.textContent = dot9Num;
   ancient = undefined;
+  btnVeryEasy.classList.remove("active");
+  btnEasy.classList.remove("active");
+  btnMiddle.classList.remove("active");
+  btnDifficult.classList.remove("active");
+  btnVeryDifficult.classList.remove("active");
+  lastCard.style.backgroundImage = "";
+}
+
+import sounds from "./sounds.js";
+
+const audio = new Audio();
+function playAudio(sound) {
+  audio.src = sounds[sound].src;
+  audio.play();
 }
 
 Azathoth.addEventListener("click", function () {
@@ -57,6 +71,7 @@ Azathoth.addEventListener("click", function () {
   IogSothoth.classList.remove("active");
   ShubNiggurath.classList.remove("active");
   setDots(0);
+  playAudio(0);
   ancient = "azathoth";
 });
 Cthulthu.addEventListener("click", function () {
@@ -64,6 +79,7 @@ Cthulthu.addEventListener("click", function () {
   Azathoth.classList.remove("active");
   IogSothoth.classList.remove("active");
   ShubNiggurath.classList.remove("active");
+  playAudio(0);
   setDots(1);
   ancient = "cthulhu";
 });
@@ -72,6 +88,7 @@ IogSothoth.addEventListener("click", function () {
   Azathoth.classList.remove("active");
   Cthulthu.classList.remove("active");
   ShubNiggurath.classList.remove("active");
+  playAudio(0);
   setDots(2);
   ancient = "iogSothoth";
 });
@@ -80,6 +97,7 @@ ShubNiggurath.addEventListener("click", function () {
   Azathoth.classList.remove("active");
   Cthulthu.classList.remove("active");
   IogSothoth.classList.remove("active");
+  playAudio(0);
   setDots(3);
   ancient = "shubNiggurath";
 });
@@ -93,44 +111,54 @@ const btnDifficult = document.querySelector(".button-difficult");
 const btnVeryDifficult = document.querySelector(".button-very-difficult");
 
 btnVeryEasy.addEventListener("click", function () {
+  playAudio(2);
   btnVeryEasy.classList.add("active");
   btnEasy.classList.remove("active");
   btnMiddle.classList.remove("active");
   btnDifficult.classList.remove("active");
   btnVeryDifficult.classList.remove("active");
   diffLevel = "very-easy";
+  lastCard.style.backgroundImage = "";
 });
 btnEasy.addEventListener("click", function () {
+  playAudio(2);
   btnEasy.classList.add("active");
   btnVeryEasy.classList.remove("active");
   btnMiddle.classList.remove("active");
   btnDifficult.classList.remove("active");
   btnVeryDifficult.classList.remove("active");
   diffLevel = "easy";
+  lastCard.style.backgroundImage = "";
 });
 btnMiddle.addEventListener("click", function () {
+  playAudio(2);
   btnMiddle.classList.add("active");
   btnVeryEasy.classList.remove("active");
   btnEasy.classList.remove("active");
   btnDifficult.classList.remove("active");
   btnVeryDifficult.classList.remove("active");
   diffLevel = "middle";
+  lastCard.style.backgroundImage = "";
 });
 btnDifficult.addEventListener("click", function () {
+  playAudio(2);
   btnDifficult.classList.add("active");
   btnVeryEasy.classList.remove("active");
   btnEasy.classList.remove("active");
   btnMiddle.classList.remove("active");
   btnVeryDifficult.classList.remove("active");
   diffLevel = "difficult";
+  lastCard.style.backgroundImage = "";
 });
 btnVeryDifficult.addEventListener("click", function () {
+  playAudio(2);
   btnVeryDifficult.classList.add("active");
   btnVeryEasy.classList.remove("active");
   btnEasy.classList.remove("active");
   btnMiddle.classList.remove("active");
   btnDifficult.classList.remove("active");
   diffLevel = "very-difficult";
+  lastCard.style.backgroundImage = "";
 });
 
 // замешивание колоды
@@ -141,8 +169,8 @@ btnShuffle.addEventListener("click", shuffle);
 let arrCards = [];
 
 function shuffle() {
-  console.log(ancient);
-  console.log(diffLevel);
+  console.log("😱 ancient: " + ancient);
+  console.log("⚙️ difficulty: " + diffLevel);
 
   let arrBlue = []; // массив синих карт, отобранных по уровню сложности
   let arrBrown = []; // массив коричневых карт, отобранных по уровню сложности
@@ -154,7 +182,9 @@ function shuffle() {
   let arrSecondStage = []; // массив карт для второй стадии
   let arrThirdStage = []; // массив карт для третьей стадии
 
-  btnShowCardTitle.textContent = 'Жмите на карту'; 
+  btnShowCardTitle.textContent = "Жмите на карту";
+
+  playAudio(1);
 
   if (ancient === undefined || diffLevel === undefined) {
     alert(
@@ -166,45 +196,45 @@ function shuffle() {
   if (diffLevel === "middle") {
     cardsData.forEach((element) => {
       if (element.color === "blue") {
-        arrBlue.push(element.src);
+        arrBlue.push(element);
       } else if (element.color === "brown") {
-        arrBrown.push(element.src);
+        arrBrown.push(element);
       } else {
-        arrGreen.push(element.src);
+        arrGreen.push(element);
       }
     });
   } else if (diffLevel === "easy") {
     cardsData.forEach((element) => {
       if (element.color === "blue" && element.difficulty != "hard") {
-        arrBlue.push(element.src);
+        arrBlue.push(element);
       } else if (element.color === "brown" && element.difficulty != "hard") {
-        arrBrown.push(element.src);
+        arrBrown.push(element);
       } else if (element.color === "green" && element.difficulty != "hard") {
-        arrGreen.push(element.src);
+        arrGreen.push(element);
       }
     });
   } else if (diffLevel === "difficult") {
     cardsData.forEach((element) => {
       if (element.color === "blue" && element.difficulty != "easy") {
-        arrBlue.push(element.src);
+        arrBlue.push(element);
       } else if (element.color === "brown" && element.difficulty != "easy") {
-        arrBrown.push(element.src);
+        arrBrown.push(element);
       } else if (element.color === "green" && element.difficulty != "easy") {
-        arrGreen.push(element.src);
+        arrGreen.push(element);
       }
     });
   } else if (diffLevel === "very-easy") {
     cardsData.forEach((element) => {
       if (element.color === "blue" && element.difficulty === "easy") {
-        arrBlue.push(element.src);
+        arrBlue.push(element);
       } else if (element.color === "brown" && element.difficulty === "easy") {
-        arrBrown.push(element.src);
+        arrBrown.push(element);
       } else if (element.color === "brown" && element.difficulty === "normal") {
-        arrBrownNormal.push(element.src);
+        arrBrownNormal.push(element);
       } else if (element.color === "green" && element.difficulty === "easy") {
-        arrGreen.push(element.src);
+        arrGreen.push(element);
       } else if (element.color === "green" && element.difficulty === "normal") {
-        arrGreenNormal.push(element.src);
+        arrGreenNormal.push(element);
       }
     });
 
@@ -226,15 +256,15 @@ function shuffle() {
   } else if (diffLevel === "very-difficult") {
     cardsData.forEach((element) => {
       if (element.color === "blue" && element.difficulty === "hard") {
-        arrBlue.push(element.src);
+        arrBlue.push(element);
       } else if (element.color === "brown" && element.difficulty === "hard") {
-        arrBrown.push(element.src);
+        arrBrown.push(element);
       } else if (element.color === "brown" && element.difficulty === "normal") {
-        arrBrownNormal.push(element.src);
+        arrBrownNormal.push(element);
       } else if (element.color === "green" && element.difficulty === "hard") {
-        arrGreen.push(element.src);
+        arrGreen.push(element);
       } else if (element.color === "green" && element.difficulty === "normal") {
-        arrGreenNormal.push(element.src);
+        arrGreenNormal.push(element);
       }
     });
 
@@ -282,17 +312,19 @@ function shuffle() {
 
   ancient = undefined;
   diffLevel = undefined;
-  btnShowCardTitle.classList.add('visible');
+  btnShowCardTitle.classList.add("visible");
 }
 
 // показ карт и обновление трекера
 
 import cardsData from "./cards.js";
+
 const lastCard = document.querySelector(".last-card");
 const btnShowCard = document.querySelector(".card-back");
 const btnShowCardTitle = document.querySelector(".title-card-back");
 
 btnShowCard.addEventListener("click", function () {
+  playAudio(2);
   if (ancient != undefined || diffLevel != undefined) {
     resetSettings();
     alert(
@@ -300,8 +332,13 @@ btnShowCard.addEventListener("click", function () {
     );
   }
   if (arrCards.length > 0) {
-    lastCard.style.backgroundImage = arrCards[arrCards.length - 1];
-    if (arrCards[arrCards.length - 1].substring(26, 28) === "gr") {
+    const img = new Image();
+    img.src = arrCards[arrCards.length - 1].src;
+    img.onload = () => {
+      lastCard.style.backgroundImage = `url(${img.src})`;
+    };
+
+    if (arrCards[arrCards.length - 1].color === "green") {
       if (dot1.textContent != 0) {
         dot1.textContent--;
       } else if (dot4.textContent != 0) {
@@ -309,7 +346,7 @@ btnShowCard.addEventListener("click", function () {
       } else if (dot7.textContent != 0) {
         dot7.textContent--;
       }
-    } else if (arrCards[arrCards.length - 1].substring(26, 28) === "br") {
+    } else if (arrCards[arrCards.length - 1].color === "brown") {
       if (dot2.textContent != 0) {
         dot2.textContent--;
       } else if (dot5.textContent != 0) {
@@ -326,9 +363,15 @@ btnShowCard.addEventListener("click", function () {
         dot9.textContent--;
       }
     }
+    console.log(
+      "🎴 " +
+        arrCards[arrCards.length - 1].id +
+        ": " +
+        arrCards[arrCards.length - 1].difficulty
+    );
     arrCards.pop();
     if (arrCards.length === 0) {
-      btnShowCardTitle.textContent = 'Начать заново'; 
+      btnShowCardTitle.textContent = "Начать заново";
     }
   } else {
     resetSettings();
@@ -351,8 +394,8 @@ function resetSettings() {
 
   ancient = undefined;
   diffLevel = undefined;
-  btnShowCardTitle.classList.remove('visible');
-  
+  btnShowCardTitle.classList.remove("visible");
+
   lastCard.style.backgroundImage = "";
 }
 

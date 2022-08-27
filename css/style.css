@@ -26,7 +26,7 @@ body {
 }
 
 .ancients-container {
-  width: 35%;
+  width: 40%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -34,7 +34,7 @@ body {
 }
 
 .card {
-  width: 200px;
+  width: 240px;
   height: auto;
   margin: 10px;
   border-radius: 10px;
@@ -74,7 +74,6 @@ body {
 
 .title {
   opacity: .5;
-
 }
 
 .button {
@@ -107,7 +106,7 @@ body {
 }
 
 .deck-container {
-  width: 35%;
+  width: 40%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -150,8 +149,8 @@ body {
 
 .card-back {
   position: relative;
-  width: 200px;
-  height: 294px;
+  width: 240px;
+  height: 353.24px;
   margin: 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -183,13 +182,14 @@ body {
 }
 
 .last-card {
-  width: 200px;
-  height: 294px;
+  width: 240px;
+  height: 353.24px;
   margin: 10px;
   border-radius: 10px;
   transition: .2s;
   box-shadow: 4px 4px 4px 4px rgb(0, 0, 0, .4);
   background-position: center;
-  background-size: 101%;
+  background-size: cover;
   background-repeat: no-repeat;
+  transition: background-image .5s ease-in-out;
 }
